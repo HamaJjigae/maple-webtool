@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { useUserAuth } from "../utils/auth-context";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
-import { useRouter } from "next/navigation"; // Correct import for routing in Next.js
+import { useRouter } from "next/navigation";
 import "../globals.css";
 
 const DashboardPage = () => {
   const { user } = useUserAuth();
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
-  const [theme, setTheme] = useState("yeti");
+  const [theme, setTheme] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState("");
   const [showSettings, setShowSettings] = useState(false);
 
@@ -136,10 +136,17 @@ const DashboardPage = () => {
     });
   };
 
-  const handleThemeChange = (newTheme) => {
-    setPreferences((prev) => ({ ...prev, theme: newTheme }));
-    setTheme(newTheme);
-  };
+const handleThemeChange = (newTheme) => {
+  setPreferences((prev) => {
+    const updatedPreferences = { ...prev, theme: newTheme };
+    delete updatedPreferences.wapValue;
+
+    setDbPreferences(updatedPreferences);
+    return updatedPreferences;
+  });
+
+  setTheme(newTheme);
+};
 
   const handleWapValueChange = (e) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
@@ -149,7 +156,6 @@ const DashboardPage = () => {
     }));
   };
 
-  // Route to the correct page when a pill is clicked
   const handlePillClick = (page) => {
     router.push(`/${page}`);
   };
@@ -168,7 +174,7 @@ return (
       }}
     >
       <h1 className="text-3xl font-semibold mb-4" style={{ color: `var(--foreground)` }}>
-        Welcome to Your Dashboard
+        Dashboard
       </h1>
       <img
         src="/newgear.webp"
