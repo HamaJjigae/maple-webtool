@@ -23,6 +23,9 @@ const LandingPage = () => {
             if (preferences.new) {
               router.push("/questionnaire");
             }
+            else {
+              router.push("/dashboard");
+            }
           }
         } catch (error) {
           console.error("Error fetching preferences:", error);

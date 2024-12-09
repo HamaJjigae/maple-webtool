@@ -40,11 +40,11 @@ const handleNext = async () => {
       return;
     }
 
-    const rawValue = wapValue.replace(/,/g, "");
+    const rawValue = parseInt(wapValue.replace(/,/g, ""));
 
     if (selectedOption === "wap" && wapValue) {
       try {
-        const wapValueDocRef = doc(db, "users", user.uid, "preferences", "wapvalue");
+        const wapValueDocRef = doc(db, "users", user.uid, "preferences", "savings");
 
         await setDoc(wapValueDocRef, { wapvalue: rawValue }, { merge: true });
       } catch (error) {
@@ -55,6 +55,7 @@ const handleNext = async () => {
     try {
       const preferencesDocRef = doc(db, "users", user.uid, "preferences", "default");
       await setDoc(preferencesDocRef, { wap: selectedOption === "wap" }, { merge: true });
+      await setDoc(preferencesDocRef, { new: false }, { merge: true });
       router.push("/dashboard");
     } catch (error) {
       console.error("Error updating preferences:", error);
