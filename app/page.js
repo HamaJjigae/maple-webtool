@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useUserAuth } from "./utils/auth-context";
 import { useRouter } from "next/navigation";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc} from "firebase/firestore";
 import { db } from "./utils/firebase.js";
 import './globals.css';
 

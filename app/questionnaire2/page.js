@@ -68,6 +68,7 @@ const Questionnaire2Page = () => {
               checked={checkboxes.legion}
               onChange={() => handleCheckboxChange("legion")}
               className="checkbox"
+              disabled
             />
           </div>
 
@@ -96,14 +97,12 @@ const Questionnaire2Page = () => {
           </div>
         </div>
 
-        {/* Progress bubbles */}
         <div className="flex justify-center gap-2 mb-6 mt-4" style={{ marginTop: "40px" }}>
           <div className="w-2 h-2 rounded-full bg-gray-400"></div>
           <div className="w-2 h-2 rounded-full bg-blue-500"></div>
           <div className="w-2 h-2 rounded-full bg-gray-400"></div>
         </div>
 
-        {/* Arrow for navigating */}
         <div className="absolute bottom-4 right-4 cursor-pointer text-gray-800" onClick={handleNext}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 18l6-6-6-6"/>

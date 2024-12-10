@@ -36,7 +36,6 @@ const QuestionnairePage = () => {
       <div className="text-center p-6 rounded-xl border shadow-lg max-w-md w-full bg-white bg-opacity-80 relative">
         <h1 className="text-3xl font-semibold mb-4">Choose your theme!</h1>
 
-        {/* Grid layout for images */}
         <div className="grid grid-cols-2 gap-6 mb-4">
           <div 
             className="flex flex-col items-center cursor-pointer"
@@ -71,14 +70,12 @@ const QuestionnairePage = () => {
           </div>
         </div>
 
-        {/* Progress bubbles */}
         <div className="flex justify-center gap-2 mb-6 mt-4">
           <div className={`w-2 h-2 rounded-full ${stage >= 1 ? 'bg-blue-500' : 'bg-gray-400'}`}></div>
           <div className={`w-2 h-2 rounded-full ${stage >= 2 ? 'bg-gray-400' : 'bg-gray-400'}`}></div>
           <div className={`w-2 h-2 rounded-full ${stage >= 3 ? 'bg-gray-400' : 'bg-gray-400'}`}></div>
         </div>
 
-        {/* Arrow for navigating */}
         <div className="absolute bottom-4 right-4 cursor-pointer text-gray-800" onClick={handleNext}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 18l6-6-6-6"/>
